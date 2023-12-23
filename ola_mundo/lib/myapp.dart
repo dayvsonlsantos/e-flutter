@@ -3,6 +3,7 @@
 
 // Como não podemos estanciar uma class abstrata, precisamos implementar, extender ou herdar a class Widget.
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/controller/home_controller.dart';
 import 'package:ola_mundo/pages/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,9 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // MaterialApp é um Widget que é necessário apenas uma vez na aplicação, usamos geralmente no começo da aplicação
     // Utilizamos para conseguir as estilizações automaticamente
-    return const MaterialApp(
+    return MaterialApp(
       // Dentro dele recebemos várias propriedades, entre elas, a home (principal)
-      home: HomePage(),
+      home: HomeController(child: const HomePage()),
+          // Dessa forma acima, estamos transformando o HomeController em pai do HomePage, assim
+          // é possível acessar os dados de HomeController dentro do HomePage
     );
   }
 }
