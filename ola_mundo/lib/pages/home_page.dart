@@ -47,8 +47,6 @@ import 'package:flutter/material.dart';
 //   }
 // }
 
-
-
 // O StatelessWidget foi criado para não ser auto gerenciado,
 // mas existe um outro Widget que foi criado para separar um estado
 // e você gerenciar o estado separadamente. Widget esse conhecido como StatefulWidget
@@ -70,14 +68,13 @@ class HomePage extends StatefulWidget {
 
 // State, tem a responsabilidade de gerenciar esse estado
 class _HomePageState extends State<HomePage> {
-  
   // Com o StatefulWidget ganhamos a gerencia do seu próprio estado, sem depender do InheritedWidget;
   // Além disso, podemos escutar o ciclo de vida da tela, da criação desse Widget
   // Exemplo:
 
   // Chamado quando o Widget for construído
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
@@ -88,47 +85,62 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Com ambos acima, temos um controle do ciclo de vida, executando funções no começo e quando o Widget for destruído.
-  
 
   // Além disso, temos o controle de estado, isso significa, que posso alterar o contador da seguinte forma;
   var counter = 0;
 
   @override
   Widget build(BuildContext context) {
+    
+    final listaFavorita = ['loja 01', 'loja 02', 'loja 03', 'loja 04'];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      
+
       // Columns e Rows
 
       body: SizedBox(
+        // Define o tamanho da tela
         width: double.infinity,
         height: double.infinity,
         // Para permitir ter um tamanho a mais na tela, adicionando um Scroll, utilizo o SingleChildScrollView
-        child: SingleChildScrollView(
-          child: Column(
-          // Define o tamanho da tela
+        // child: SingleChildScrollView(
+        // child: Column(
+
+        // Posso ainda, substituir esses dois itens acima, por apenas um: ListView
+        child: ListView.builder(
+          // Utilizando o ListView, podemos utilizar o builder
+
+            // Define o alinhamento inicial da coluna/linha
+            // mainAxisAlignment: MainAxisAlignment.start,
+
+            // Define o alinhamento cruzado da coluna/linha
+            // Esse para funcionar corretamente, precisamos definir o tamanho da tela.
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            // Utilizando Column e Row, nós temos children, pois temos vários valores
           
-          // Define o alinhamento inicial da coluna/linha
-          mainAxisAlignment: MainAxisAlignment.start,
-          
-          // Define o alinhamento cruzado da coluna/linha
-          // Esse para funcionar corretamente, precisamos definir o tamanho da tela.
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // Utilizando Column e Row, nós temos children, pois temos vários valores
-          children: [
-            for(var i = 0; i < 10; i++)
-              Container(
-                color: Colors.red,
-                width: double.infinity,
-                height: 80,
-                margin: const EdgeInsets.all(12), //Define uma distância
-              ),
-            Text('Flutterando $counter')
-          ],
-                ),
-        )),
+          // Com esse builder, posso fazer:
+
+          itemCount: listaFavorita.length,
+          itemBuilder: (context, index){
+            return ListTile(
+                title: Text(listaFavorita[index]),
+              );
+          },
+          // children: [
+          //   for (var i = 0; i < 10; i++)
+          //     Container(
+          //       color: Colors.red,
+          //       width: double.infinity,
+          //       height: 80,
+          //       margin: const EdgeInsets.all(12), //Define uma distância
+          //     ),
+          //   Text('Flutterando $counter')
+          // ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         // Exige algumas propriedades
 
@@ -143,7 +155,6 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             //Boa prática adicionarmos dentro dessa função anonima, tudo que será alterado
             counter++;
-            
           }); //Funciona apenas dentro de uma classe State
         },
       ),
