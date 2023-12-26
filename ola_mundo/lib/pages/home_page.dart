@@ -105,35 +105,30 @@ class _HomePageState extends State<HomePage> {
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: Column(
-        // Define o tamanho da tela
-
-        // Define o alinhamento inicial da coluna/linha
-        mainAxisAlignment: MainAxisAlignment.start,
-
-        // Define o alinhamento cruzado da coluna/linha
-        // Esse para funcionar corretamente, precisamos definir o tamanho da tela.
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // Utilizando Column e Row, nós temos children, pois temos vários valores
-        children: [
-          Container(
-            color: Colors.red,
-            width: 80,
-            height: 80,
-          ),
-          Container(
-            color: Colors.blue,
-            width: 80,
-            height: 80,
-          ),
-          Container(
-            color: Colors.green,
-            width: 80,
-            height: 80,
-          ),
-          Text('Flutterando $counter')
-        ],
-      )),
+        // Para permitir ter um tamanho a mais na tela, adicionando um Scroll, utilizo o SingleChildScrollView
+        child: SingleChildScrollView(
+          child: Column(
+          // Define o tamanho da tela
+          
+          // Define o alinhamento inicial da coluna/linha
+          mainAxisAlignment: MainAxisAlignment.start,
+          
+          // Define o alinhamento cruzado da coluna/linha
+          // Esse para funcionar corretamente, precisamos definir o tamanho da tela.
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // Utilizando Column e Row, nós temos children, pois temos vários valores
+          children: [
+            for(var i = 0; i < 10; i++)
+              Container(
+                color: Colors.red,
+                width: double.infinity,
+                height: 80,
+                margin: const EdgeInsets.all(12), //Define uma distância
+              ),
+            Text('Flutterando $counter')
+          ],
+                ),
+        )),
       floatingActionButton: FloatingActionButton(
         // Exige algumas propriedades
 
