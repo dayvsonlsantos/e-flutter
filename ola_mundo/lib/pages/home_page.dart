@@ -1,6 +1,6 @@
 // Componetizando os itens
 import 'package:flutter/material.dart';
-import 'package:ola_mundo/controller/home_controller.dart';
+// import 'package:ola_mundo/controller/home_controller.dart';
 
 // class HomePage extends StatelessWidget {
 //   const HomePage({super.key});
@@ -99,7 +99,41 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: Center(child: Text('Flutterando $counter')),
+      
+      // Columns e Rows
+
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+        // Define o tamanho da tela
+
+        // Define o alinhamento inicial da coluna/linha
+        mainAxisAlignment: MainAxisAlignment.start,
+
+        // Define o alinhamento cruzado da coluna/linha
+        // Esse para funcionar corretamente, precisamos definir o tamanho da tela.
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // Utilizando Column e Row, nós temos children, pois temos vários valores
+        children: [
+          Container(
+            color: Colors.red,
+            width: 80,
+            height: 80,
+          ),
+          Container(
+            color: Colors.blue,
+            width: 80,
+            height: 80,
+          ),
+          Container(
+            color: Colors.green,
+            width: 80,
+            height: 80,
+          ),
+          Text('Flutterando $counter')
+        ],
+      )),
       floatingActionButton: FloatingActionButton(
         // Exige algumas propriedades
 
