@@ -1,5 +1,7 @@
 // Componetizando os itens
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/pages/second_page.dart';
 // import 'package:ola_mundo/controller/home_controller.dart';
 
 // class HomePage extends StatelessWidget {
@@ -145,7 +147,7 @@ class _HomePageState extends State<HomePage> {
         // Exige algumas propriedades
 
         // Adiciona um icone
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.arrow_right_rounded),
         // Ao clicar, chamará essa função anonima (pois não está com nome)
         onPressed: () {
           // print('clicou');
@@ -154,10 +156,14 @@ class _HomePageState extends State<HomePage> {
           // Não funciona, pois precisa recarregar os valores da página (Hot Reload), para isso, usamos o setState()
           setState(() {
             //Boa prática adicionarmos dentro dessa função anonima, tudo que será alterado
-            counter++;
+            // counter++;
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const SecondPage()),
+            );
           }); //Funciona apenas dentro de uma classe State
         },
       ),
+      
     );
   }
 }
