@@ -12,7 +12,16 @@ class NavigationBarApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFFF9F9F9),
+        appBarTheme: const AppBarTheme(
+          color: Color(0xFF151026),
+        ),
+        bottomAppBarTheme: const BottomAppBarTheme(
+          color: Color(0xFF151026),
+        )
+      ),
       home: const NavigationExample(),
     );
   }
@@ -26,7 +35,7 @@ class NavigationExample extends StatefulWidget {
 }
 
 class _NavigationExampleState extends State<NavigationExample> {
-  int currentPageIndex = 0;
+  int currentPageIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -38,24 +47,38 @@ class _NavigationExampleState extends State<NavigationExample> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Colors.amber,
+        indicatorColor: Colors.transparent,
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Badge(child: Icon(Icons.notifications_sharp)),
-            label: 'Notifications',
-          ),
-          NavigationDestination(
-            icon: Badge(
-              label: Text('2'),
-              child: Icon(Icons.messenger_sharp),
+            selectedIcon: Icon(
+              Icons.storefront_rounded,
+              color: Color(0xFF0601B4),
             ),
-            label: 'Messages',
+            icon: Icon(Icons.storefront, color: Color(0xFF9492DE)),
+            label: 'Lojas',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.favorite,
+              color: Color(0xFF0601B4),
+            ),
+            icon: Icon(
+              Icons.favorite,
+              color: Color(0xFF9492DE),
+            ),
+            label: 'Favoritos',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.settings,
+              color: Color(0xFF0601B4),
+            ),
+            icon: Icon(
+              Icons.settings,
+              color: Color(0xFF9492DE),
+            ),
+            label: 'Configurações',
           ),
         ],
       ),
