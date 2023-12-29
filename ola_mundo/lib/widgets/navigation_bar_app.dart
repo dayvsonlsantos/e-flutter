@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ola_mundo/pages/home_page.dart';
 import 'package:ola_mundo/pages/second_page.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 /// Flutter code sample for [NavigationBar].
 
@@ -13,14 +14,15 @@ class NavigationBarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          useMaterial3: true,
-          scaffoldBackgroundColor: const Color(0xFFF9F9F9),
-          appBarTheme: const AppBarTheme(
-            color: Color(0xFFFFFFFF),
-          ),
-          bottomAppBarTheme: const BottomAppBarTheme(
-            color: Color(0xFFFFFFFF),
-          )),
+        useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+        appBarTheme: const AppBarTheme(
+          color: Color(0xFFFFFFFF),
+        ),
+        bottomAppBarTheme: const BottomAppBarTheme(
+          color: Color.fromARGB(255, 29, 25, 139),
+        ),
+      ),
       home: const NavigationExample(),
     );
   }
@@ -40,62 +42,33 @@ class _NavigationExampleState extends State<NavigationExample> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).bottomAppBarTheme.color,
-        shape: const CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: currentPageIndex == 0
-                  ? const Icon(
-                      Icons.storefront_rounded,
-                      color: Color(0xFF0601B4),
-                    )
-                  : const Icon(
-                      Icons.storefront_rounded,
-                      color: Color(0xFF9492DE),
-                    ),
-              onPressed: () {
-                setState(() {
-                  currentPageIndex = 0;
-                });
-              },
-            ),
-            IconButton(
-              icon: currentPageIndex == 1
-                  ? const Icon(
-                      Icons.favorite,
-                      color: Color(0xFF0601B4),
-                    )
-                  : const Icon(
-                      Icons.favorite,
-                      color: Color(0xFF9492DE),
-                    ),
-              onPressed: () {
-                setState(() {
-                  currentPageIndex = 1;
-                });
-              },
-            ),
-            IconButton(
-              icon: currentPageIndex == 2
-                  ? const Icon(
-                      Icons.settings,
-                      color: Color(0xFF0601B4),
-                    )
-                  : const Icon(
-                      Icons.settings,
-                      color: Color(0xFF9492DE),
-                    ),
-              onPressed: () {
-                setState(() {
-                  currentPageIndex = 2;
-                });
-              },
-            ),
-          ],
-        ),
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Theme.of(context).bottomAppBarTheme.color!,
+        backgroundColor: Colors.transparent,
+        buttonBackgroundColor: Theme.of(context).bottomAppBarTheme.color,
+        height: 75,
+        items: const <Widget>[
+          Icon(
+            Icons.storefront,
+            size: 30,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          Icon(
+            Icons.favorite,
+            size: 30,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          Icon(
+            Icons.settings,
+            size: 30,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ],
+        onTap: (index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
       ),
       body: <Widget>[
         /// Home page
